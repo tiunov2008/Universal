@@ -223,20 +223,20 @@ body {
   list-style: none;
 }
 
-.hero .right .post {
+.post {
   padding: 17px 25px 19px 25px;
   margin: 0;
   border-top: 1px solid #D9DADB;
   min-height: 100px;
 }
 
-.hero .right .post-categories {
+.post-categories {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.hero .right .post-categories a {
+.post-categories a {
   font-weight: 900;
   font-size: 12px;
   line-height: 15px;
@@ -244,16 +244,16 @@ body {
   text-decoration: none;
 }
 
-.hero .right .post-permalink {
+.post-permalink {
   text-decoration: none;
   color: #4B5157;
 }
 
-.hero .right .post:hover {
+.post:hover {
   background-color: #f5f5f5;
 }
 
-.hero .right .post-title {
+.post-title {
   min-height: 40px;
   font-size: 14px;
   line-height: 20px;

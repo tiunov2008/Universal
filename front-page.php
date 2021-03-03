@@ -11,13 +11,15 @@ get_header();
 
                 $myposts = get_posts([ 
                     'numberposts' => 1,
-                    'category_name'    => 'javascript'
+                    'category_name' => 'javascript'
                 ]);
 
                 if( $myposts ){
                     foreach( $myposts as $post ){
                         setup_postdata( $post );
                         ?>
+                        <p><?php the_title() ?></p>
+                        
                 <img src="<?php the_post_thumbnail_url() ?>" alt="" class="post-thumb" />
                 <a href="#" class="author">
                     <img src="" alt="" class="avatar" />
@@ -29,9 +31,9 @@ get_header();
                 <div class="post-text">
                     <?php the_category() ?>
                     <h2 class="post-title">
-                        Самые крутые функции в javascript для новичка
+                        <?php the_title() ?>
                     </h2>
-                    <a href="#" class="more">Читать далее</a>
+                    <a href="<?php echo get_the_permalink() ?>" class="more">Читать далее</a>
                 </div>
             </div>
             <!-- /.left -->
@@ -48,55 +50,37 @@ get_header();
             <div class="right">
                 <h3 class="recommend">Рекомендуем</h3>
                 <ul class="posts-list">
+                    <?php
+                    global $post;
+
+                    $myposts = get_posts([ 
+                        'numberposts' => 5,
+                    ]);
+
+                    if( $myposts ){
+                        foreach( $myposts as $post ){
+                            setup_postdata( $post );
+                            ?>
+                            <p><?php the_title() ?></p>
+                            
                     <!-- Выводим записи -->
                     <li class="post">
-                        <a href="#" class="category-link css">CSS</a>
+                        <a href="#" class="category-link"><?php the_category() ?></a>
                         <a class="post-permalink" href="#">
                             <h4 class="post-title">
-                                Новые возможности языка стилей
+                            <?php the_title() ?>
                             </h4>
                         </a>
                     </li>
                     <!-- Выводим записи -->
-                    <li class="post">
-                        <a href="#" class="category-link web-design"
-                            >Web Design</a
-                        >
-                        <a class="post-permalink" href="#">
-                            <h4 class="post-title">
-                                Где взять реальные проекты для портфолио
-                            </h4>
-                        </a>
-                    </li>
-                    <!-- Выводим записи -->
-                    <li class="post">
-                        <a href="#" class="category-link javascript"
-                            >JavaScript</a
-                        >
-                        <a class="post-permalink" href="#">
-                            <h4 class="post-title">
-                                20+ инструментов для js-разработчика
-                            </h4>
-                        </a>
-                    </li>
-                    <!-- Выводим записи -->
-                    <li class="post">
-                        <a href="#" class="category-link web-design"
-                            >Web Design</a
-                        >
-                        <a class="post-permalink" href="#">
-                            <h4 class="post-title">Удачные референсы</h4>
-                        </a>
-                    </li>
-                    <!-- Выводим записи -->
-                    <li class="post">
-                        <a href="#" class="category-link javascript"
-                            >JavaScript</a
-                        >
-                        <a class="post-permalink" href="#">
-                            <h4 class="post-title">Топ плагинов jQuery</h4>
-                        </a>
-                    </li>
+                    <?php 
+                            }
+                        } else {
+                            ?> <p>Постов не найдено</p> <?php 
+                            // Постов не найдено
+                        }
+                        wp_reset_postdata(); // Сбрасываем $post
+                    ?>
                 </ul>
             </div>
             <!-- /.right -->

@@ -11,18 +11,16 @@ get_header();
 
                 $myposts = get_posts([ 
                     'numberposts' => 1,
-                    'category_name' => 'javascript'
                 ]);
 
                 if( $myposts ){
                     foreach( $myposts as $post ){
                         setup_postdata( $post );
-                        ?>
-                        <p><?php the_title() ?></p>
-                        
+                        ?>                        
                 <img src="<?php the_post_thumbnail_url() ?>" alt="" class="post-thumb" />
-                <a href="#" class="author">
-                    <img src="" alt="" class="avatar" />
+                <?php $author_id = get_the_author_meta('ID') ?>
+                <a href="<?php echo get_author_posts_url( $author_id ) ?>" class="author">
+                    <img src="<?php echo get_avatar_url($author_id)?>" alt="" class="avatar" />
                     <div class="author-bio">
                         <span class="author-name"><?php the_author() ?></span>
                         <span class="author-rank">Разработчик</span>
@@ -55,21 +53,23 @@ get_header();
 
                     $myposts = get_posts([ 
                         'numberposts' => 5,
+                        'offset' => 1,
                     ]);
 
                     if( $myposts ){
                         foreach( $myposts as $post ){
                             setup_postdata( $post );
                             ?>
-                            <p><?php the_title() ?></p>
                             
                     <!-- Выводим записи -->
                     <li class="post">
-                        <a href="#" class="category-link"><?php the_category() ?></a>
+                        <?php the_category() ?>
                         <a class="post-permalink" href="#">
+                            <a href="<?php echo get_the_permalink() ?>" class="post-permalink">
                             <h4 class="post-title">
                             <?php the_title() ?>
                             </h4>
+                            </a>
                         </a>
                     </li>
                     <!-- Выводим записи -->

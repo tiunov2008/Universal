@@ -29,7 +29,7 @@ get_header();
                 <div class="post-text">
                     <?php the_category() ?>
                     <h2 class="post-title">
-                        <?php the_title() ?>
+                        <?php echo mb_strimwidth(get_the_title(), 0 , 60, "...")  ?>
                     </h2>
                     <a href="<?php echo get_the_permalink() ?>" class="more">Читать далее</a>
                 </div>
@@ -54,6 +54,7 @@ get_header();
                     $myposts = get_posts([ 
                         'numberposts' => 5,
                         'offset' => 1,
+                        'category_name' => 'javascript , css ,html, web-design',
                     ]);
 
                     if( $myposts ){
@@ -67,7 +68,7 @@ get_header();
                         <a class="post-permalink" href="#">
                             <a href="<?php echo get_the_permalink() ?>" class="post-permalink">
                             <h4 class="post-title">
-                            <?php the_title() ?>
+                            <?php echo mb_strimwidth(get_the_title(), 0 , 60, "...")  ?> 
                             </h4>
                             </a>
                         </a>
@@ -89,6 +90,41 @@ get_header();
     </div>
     <!-- /.container -->
 </main>
+<div class="container">
+    <ul class="article-list">
+
+        <?php
+        global $post;
+
+        $myposts = get_posts([ 
+            'numberposts' => 4,
+            'category_name' => 'articles',
+        ]);
+
+        if( $myposts ){
+            foreach( $myposts as $post ){
+                setup_postdata( $post );
+        ?>
+                <li class="article-item">
+                    <a class="article-permalink" href="<?php echo get_the_permalink() ?>">
+                        <h4 class="article-title"><?php echo mb_strimwidth(get_the_title(), 0 , 50, "...")  ?></h4>
+                    </a>
+                    <img width="65" height="65" src="<?php echo get_the_post_thumbnail_url( null, 'thumbnail' )?>" alt="">
+                </li>
+        <?php 
+                }
+            } else {
+                ?> <p>Постов не найдено</p> <?php 
+                // Постов не найдено
+            }
+            wp_reset_postdata(); // Сбрасываем $post
+        ?>
+    </ul>
+
+</div>
+
+<!-- Выводим записи -->
+
 
 <?php
 get_footer();

@@ -731,10 +731,8 @@ body {
 
 .widget-social .widget-link {
   text-decoration: none;
-}
-
-.widget-social .widget-link:not(:last-child) {
-  margin-right: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .widget-social .widget-title {

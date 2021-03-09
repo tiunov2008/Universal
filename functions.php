@@ -245,11 +245,11 @@ class Social_Widget extends WP_Widget {
 	 * @param array $instance сохраненные данные из настроек
 	 */
 	function form( $instance ) {
-		$facebook = @ $instance['facebook'] ?: 'http://example.com';
-        $instagram = @ $instance['instagram'] ?: 'http://example.com';
-        $vk = @ $instance['vk'] ?: 'http://example.com';
-		$twitter = @ $instance['description'] ?: 'http://example.com';
-        $youtube = @ $instance['link'] ?: 'http://example.com';
+		$facebook = @ $instance['facebook'] ?: '';
+        $instagram = @ $instance['instagram'] ?: '';
+        $vk = @ $instance['vk'] ?: '';
+		$twitter = @ $instance['description'] ?: '';
+        $youtube = @ $instance['link'] ?: '';
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'facebook' ); ?>"><?php _e( 'Facebook:' ); ?></label> 

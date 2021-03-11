@@ -295,6 +295,46 @@ body {
   color: #4592FF;
 }
 
+.category-link.web-design {
+  color: #FF4F52;
+}
+
+.category-link.web-design:visited {
+  color: #FF4F52;
+}
+
+.category-link.articles {
+  color: #3BBDC4;
+}
+
+.category-link.articles:visited {
+  color: #3BBDC4;
+}
+
+.category-link.javascript {
+  color: #AC8EE3;
+}
+
+.category-link.javascript:visited {
+  color: #AC8EE3;
+}
+
+.category-link.html {
+  color: #FFA34D;
+}
+
+.category-link.html:visited {
+  color: #FFA34D;
+}
+
+.category-link.css {
+  color: #6E99AE;
+}
+
+.category-link.css:visited {
+  color: #6E99AE;
+}
+
 .article-list {
   margin: 0;
   margin-top: 180px;
@@ -358,7 +398,7 @@ body {
 
 .article-grid {
   width: 74%;
-  margin: 0;
+  margin: 0 0 60px;
   padding: 0;
   list-style: none;
   display: grid;
@@ -766,4 +806,114 @@ body {
   padding: 5px 15px;
   border: 1px solid #D9DADB;
   border-radius: 5px;
+}
+
+.investigation {
+  padding: 50px 0 55px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.investigation-title {
+  font-family: Roboto Slab;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 50px;
+  color: #FFFFFF;
+  max-width: 946px;
+  margin: 0 auto 25px;
+}
+
+.favourites {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 30px;
+}
+
+.digest {
+  margin-top: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 0 25px;
+}
+
+.digest-wrapper {
+  width: 74%;
+}
+
+.digest-item {
+  display: flex;
+  align-items: center;
+  padding: 25px 0;
+}
+
+.digest-item:not(:last-child) {
+  border-bottom: 1px solid #D9DADB;
+}
+
+.digest-item-permalink {
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.digest-thumb {
+  width: 336px;
+  height: 195px;
+  object-fit: cover;
+  margin-right: 25px;
+}
+
+.digest-info {
+  position: relative;
+  width: 100%;
+}
+
+.digest-title {
+  font-family: Roboto Slab;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+  color: #262D33;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  max-width: 400px;
+}
+
+.digest-excerpt {
+  margin: 0 0 20px;
+}
+
+.digest-footer {
+  display: flex;
+  align-items: center;
+}
+
+.digest-date, .digest-likes, .digest-comments {
+  margin-right: 11px;
+  color: #939699;
+  display: flex;
+  align-items: center;
+}
+
+.bookmark {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.bookmark svg {
+  fill: #BCBFC2;
+}
+
+.bookmark svg:hover {
+  fill: red;
 }

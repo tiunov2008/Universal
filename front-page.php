@@ -268,7 +268,7 @@ get_header();
 global $post;
 
 $query = new WP_Query( [
-	'posts_per_page' => 5,
+	'posts_per_page' => 1,
 	'category_name' => 'investigation',
 ] );
 
@@ -307,7 +307,15 @@ wp_reset_postdata(); // Сбрасываем $post
                 ?>
                 <li class="digest-item">
                 <a href="<?php the_permalink()?>" class="digest-item-permalink">
-                    <img src="<?php echo get_the_post_thumbnail_url( null, 'thumbnail' )?>" class="digest-thumb">
+                    <img src="<?php
+                        //должно находится внутри цикла
+                        if( has_post_thumbnail() ) {
+                            echo get_the_post_thumbnail_url();
+                        }
+                        else {
+                            echo get_template_directory_uri().'/assets/img/img-default.jpg';
+                        }
+                        ?>" class="digest-thumb">
                 </a>
                 <div class="digest-info">
                     <button class="bookmark">
@@ -360,5 +368,135 @@ wp_reset_postdata(); // Сбрасываем $post
     </div>
 
 </div>
+<div class="special">
+    <div class="container">
+        <div class="special-grid">
+            <?php		
+                global $post;
+
+                $query = new WP_Query( [
+                    'posts_per_page' => 1,
+                    'category_name' => 'photo-gallery',
+                ] ); 
+                if ( $query->have_posts() ) {
+                    while ( $query->have_posts() ) {
+                        $query->the_post();
+                        ?>
+                <div class="photo-report">
+                    <div class="swiper-container photo-report-slider">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <?php $images = get_attached_media('image');
+                                foreach ($images as $image) {
+                                    echo '<div class="swiper-slide"><img src="';
+                                    print_r($image -> guid);
+                                    echo '"></div>';
+                                }
+                            ?>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <div class="photo-report-content">
+                        <?php                     
+                        foreach(get_the_category() as $category){
+                            printf(
+                                '<a href="%s" class="category-link %s">%s </a>',
+                                esc_url(get_category_link( $category )) ,
+                                esc_html($category -> slug),
+                                esc_html($category -> name)
+                            );
+                        } ?>
+                        <img src="<?php the_post_thumbnail_url() ?>" alt="" class="post-thumb" />
+                        <?php $author_id = get_the_author_meta('ID') ?>
+                        <a href="<?php echo get_author_posts_url( $author_id ) ?>" class="author">
+                            <img src="<?php echo get_avatar_url($author_id)?>" alt="" class="author-avatar" />
+                            <div class="author-bio">
+                                <span class="author-name"><?php the_author() ?></span>
+                                <span class="author-rank">Разработчик</span>
+                            </div>
+                        </a>
+                        <h3 class="photo-report-title"><?php the_title()?></h3>
+                        <a href="<?php echo get_the_permalink()?>" class="button photo-report-button">
+                            <svg width="19px" height="15px" class="photo-report-icon">
+                                <use xlink:href="<?php echo get_template_directory_uri()?>/assets/img/sprite.svg#images"></use>
+                            </svg>
+                            Смотреть фото
+                            <span class="photo-report-counter">26</span>
+                        </a>
+                    </div>
+                </div>
+
+            <!-- /.photo-report-content -->
+            <?php 
+                }} else {
+            // Постов не найдено
+            }
+
+            wp_reset_postdata(); // Сбрасываем $post
+            ?>
+
+            <div class="other">
+            <?php		
+                global $post;
+
+                $query = new WP_Query( [
+                    'posts_per_page' => 1,
+                    'category_name' => 'career'
+                ] );
+
+                if ( $query->have_posts() ) {
+                    while ( $query->have_posts() ) {
+                        $query->the_post();
+                        ?>
+                        <div class="career-post" style="background: #E5E5E5  url(<?php echo get_template_directory_uri() . "/assets/img/career.png" ?> ) no-repeat right top / cover">
+                            <a href="<?php echo get_the_permalink()?>" class="category-link">Карьера</a>
+                                <h3 class="career-post-title"><?php the_title()?></h3>
+                                <p class="career-post-excerpt">
+                                <?php echo mb_strimwidth(get_the_excerpt(), 0 , 150, "...")?>
+                                </p>
+                            <a href="#" class="more">Читать далее</a>
+                        </div>
+                <?php 
+                }} else {
+                    // Постов не найдено
+                }
+
+                wp_reset_postdata(); // Сбрасываем $post
+                ?>
+                <!-- /.career-post -->
+                <div class="other-posts">
+                    <?php		
+                        global $post;
+
+                        $query = new WP_Query( [
+                            'posts_per_page' => 2,
+                            'category__not_in' => 24,
+                        ] );
+
+                        if ( $query->have_posts() ) {
+                            while ( $query->have_posts() ) {
+                                $query->the_post();
+                                ?>
+                            <a href="#" class="other-post other-post-default">
+                                <h4 class="other-post-title"><?php the_title()?></h4>
+                                <p class="other-post-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0 , 50, "...")?></p>
+                                <span class="other-post-date"><?php the_time( 'j F' )?></span>
+                            </a>
+                    <?php 
+                        }} else {
+                            // Постов не найдено
+                        }
+
+                        wp_reset_postdata(); // Сбрасываем $post
+                    ?>
+                </div>
+                <!-- /.other-posts -->
+            </div>
+        </div>
+        <!-- /.special-grid -->
+    </div>
+</div>
+<!-- /.special -->
+
 <?php
-get_footer();
+wp_footer();

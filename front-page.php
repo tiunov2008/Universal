@@ -17,7 +17,15 @@ get_header();
                     foreach( $myposts as $post ){
                         setup_postdata( $post );
                         ?>                        
-                <img src="<?php the_post_thumbnail_url() ?>" alt="" class="post-thumb" />
+                <img src="<?php
+                        //должно находится внутри цикла
+                        if( has_post_thumbnail() ) {
+                            echo get_the_post_thumbnail_url();
+                        }
+                        else {
+                            echo get_template_directory_uri().'/assets/img/img-default.jpg';
+                        }
+                        ?>" alt="" class="post-thumb" />
                 <?php $author_id = get_the_author_meta('ID') ?>
                 <a href="<?php echo get_author_posts_url( $author_id ) ?>" class="author">
                     <img src="<?php echo get_avatar_url($author_id)?>" alt="" class="avatar" />
@@ -125,7 +133,15 @@ get_header();
                     <a class="article-permalink" href="<?php echo get_the_permalink() ?>">
                         <h4 class="article-title"><?php echo mb_strimwidth(get_the_title(), 0 , 50, "...")  ?></h4>
                     </a>
-                    <img width="65" height="65" src="<?php echo get_the_post_thumbnail_url( null, 'thumbnail' )?>" alt="">
+                    <img width="65" height="65" src="<?php
+                        //должно находится внутри цикла
+                        if( has_post_thumbnail() ) {
+                            echo get_the_post_thumbnail_url(null, 'thumbnail');
+                        }
+                        else {
+                            echo get_template_directory_uri().'/assets/img/img-default.jpg';
+                        }
+                        ?>" alt="">
                 </li>
         <?php 
                 }
@@ -225,7 +241,15 @@ get_header();
                             ?>
                             <li class="article-grid-item article-grid-item-3">
                                 <a href="<?php the_permalink()?>" class="article-grid-permalink">
-                                    <img src="<?php echo get_the_post_thumbnail_url()?>" alt="" class="article-thumb" />
+                                    <img src="<?php
+                        //должно находится внутри цикла
+                        if( has_post_thumbnail() ) {
+                            echo get_the_post_thumbnail_url();
+                        }
+                        else {
+                            echo get_template_directory_uri().'/assets/img/img-default.jpg';
+                        }
+                        ?>" alt="" class="article-thumb" />
                                     <h4 class="article-grid-title">
                                         <?php echo mb_strimwidth(get_the_title(), 0 , 50, "...")  ?>
                                     </h4>
@@ -276,7 +300,7 @@ if ( $query->have_posts() ) {
 	while ( $query->have_posts() ) {
 		$query->the_post();
 		?>
-		<section class="investigation" style="background: linear-gradient(0deg, rgba(64, 48, 61, 0.45), rgba(64, 48, 61, 0.45)), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center">
+		<section class="investigation" style="background: linear-gradient(0deg, rgba(64, 48, 61, 0.45), rgba(64, 48, 61, 0.45)), url(<?php echo get_the_post_thumbnail_url() ?>) no-repeat center center;">
             <div class="container">
                 <h2 class="investigation-title"><?php the_title();?></h2>
                 <a href="<?php echo get_the_permalink()?>" class="more">Читать статью</a>
@@ -499,4 +523,4 @@ wp_reset_postdata(); // Сбрасываем $post
 <!-- /.special -->
 
 <?php
-wp_footer();
+get_footer();

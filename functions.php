@@ -58,7 +58,30 @@ function register_my_widgets(){
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => "</h2>\n",
 		) );
-		
+	
+	register_sidebar( 
+		array(
+			'name'          => sprintf(__('Footer Menu'), $i ),
+			'id'            => "sidebar-footer",
+			'description'   => 'Добавте меню сюда',
+			'class'         => '',
+			'before_widget' => '<section id="%1$s" class="footer-menu %2$s">',
+			'after_widget'  => "</section>\n",
+			'before_title'  => '<h2 class="footer-menu-title">',
+			'after_title'   => "</h2>\n",
+		) );
+	register_sidebar( 
+		array(
+			'name'          => sprintf(__('Footer Text'), $i ),
+			'id'            => "sidebar-footer-text",
+			'description'   => 'Добавте текст сюда',
+			'class'         => '',
+			'before_widget' => '<section id="%1$s" class="footer-text %2$s">',
+			'after_widget'  => "</section>\n",
+			'before_title'  => '',
+			'after_title'   => "",
+		) );
+				
 }
 
 add_filter( 'widget_tag_cloud_args', 'edit_widget_tag_cloud_args');
@@ -225,13 +248,14 @@ class Social_Widget extends WP_Widget {
 	 * @param array $instance сохраненные данные из настроек
 	 */
 	function widget( $args, $instance ) {
+		$title = $instance['title'];
 		$facebook = $instance['facebook'];
         $instagram = $instance['instagram'];
         $vk = $instance['vk'];
 		$twitter = $instance['twitter'];
 		$youtube = $instance['youtube'];
 		echo $args['before_widget'];
-		echo '<p class="widget-title">Наши соцсети</p>';
+		echo '<p class="widget-title">' . $title . '</p>';
         if ( ! empty( $facebook ) ) {
 			echo '<a class="widget-link widget-link-1" href="' . $facebook . '">
             <img class="widget-icon " src="' . get_template_directory_uri(  ) . '/assets/img/facebook.svg"></a>';
@@ -261,12 +285,17 @@ class Social_Widget extends WP_Widget {
 	 * @param array $instance сохраненные данные из настроек
 	 */
 	function form( $instance ) {
+		$title = @ $instance['title'] ?: '';
 		$facebook = @ $instance['facebook'] ?: '';
         $instagram = @ $instance['instagram'] ?: '';
         $vk = @ $instance['vk'] ?: '';
 		$twitter = @ $instance['description'] ?: '';
         $youtube = @ $instance['link'] ?: '';
 		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'facebook' ); ?>"><?php _e( 'Facebook:' ); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id( 'facebook' ); ?>" name="<?php echo $this->get_field_name( 'facebook' ); ?>" type="text" value="<?php echo esc_attr( $facebook ); ?>">
@@ -303,6 +332,7 @@ class Social_Widget extends WP_Widget {
 	 */
 	function update( $new_instance, $old_instance ) {
 		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 		$instance['facebook'] = ( ! empty( $new_instance['facebook'] ) ) ? strip_tags( $new_instance['facebook'] ) : '';
         $instance['instagram'] = ( ! empty( $new_instance['instagram'] ) ) ? strip_tags( $new_instance['instagram'] ) : '';
         $instance['vk'] = ( ! empty( $new_instance['vk'] ) ) ? strip_tags( $new_instance['vk'] ) : '';
@@ -388,7 +418,15 @@ class Recents_posts_widget extends WP_Widget {
 				setup_postdata($post);
 				?>
 				<a href="<?php echo get_the_permalink()?>" class="recent-posts-link">
-					<img src="<?php echo get_the_post_thumbnail_url('', 'thumbnail')?>" class="recent-posts-thumb" alt="">
+					<img src="<?php
+                        //должно находится внутри цикла
+                        if( has_post_thumbnail() ) {
+                            echo get_the_post_thumbnail_url(null, 'thumbnail');
+                        }
+                        else {
+                            echo get_template_directory_uri().'/assets/img/img-default.jpg';
+                        }
+                        ?>" class="recent-posts-thumb" alt="">
 					<div class="recent-posts-info">
 						<h4 class="recent-posts-title">
 							<?php the_title(); ?>

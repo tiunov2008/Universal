@@ -11,6 +11,7 @@ get_header();
 
                 $myposts = get_posts([ 
                     'numberposts' => 1,
+                    'category__not_in' => 26,
                 ]);
 
                 if( $myposts ){
@@ -164,6 +165,7 @@ get_header();
             $query = new WP_Query( [
                 'posts_per_page' => 7,
                 'category__not_in' => 20,
+                'category__not_in' => 26,
             ] );
 
             if ( $query->have_posts() ) {
@@ -294,6 +296,7 @@ global $post;
 $query = new WP_Query( [
 	'posts_per_page' => 1,
 	'category_name' => 'investigation',
+    'category__not_in' => 26,
 ] );
 
 if ( $query->have_posts() ) {
@@ -323,6 +326,7 @@ wp_reset_postdata(); // Сбрасываем $post
 
         $query = new WP_Query( [
             'posts_per_page' => 6,
+            'category__not_in' => 26,
         ] );
 
         if ( $query->have_posts() ) {
@@ -460,7 +464,7 @@ wp_reset_postdata(); // Сбрасываем $post
             ?>
 
             <div class="other">
-            <?php		
+            <?php
                 global $post;
 
                 $query = new WP_Query( [
@@ -495,6 +499,7 @@ wp_reset_postdata(); // Сбрасываем $post
                         $query = new WP_Query( [
                             'posts_per_page' => 2,
                             'category__not_in' => 24,
+                            'category__not_in' => 26,
                         ] );
 
                         if ( $query->have_posts() ) {

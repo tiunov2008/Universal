@@ -6,7 +6,7 @@ if ( ! is_active_sidebar( 'main-sidebar-bottom' ) ) {
 }
 ?>
 <!-- Подключаем верхний сайдбар -->
-<aside id="secondary" class="sidebar-front-page">
+<aside id="main-sidebar-bottom" class="sidebar-front-page">
     <?php dynamic_sidebar('main-sidebar-bottom'); ?>
 </aside>
 <!-- #sidebar -->

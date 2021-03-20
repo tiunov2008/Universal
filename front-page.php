@@ -352,7 +352,8 @@ wp_reset_postdata(); // Сбрасываем $post
                     </svg>
 
                     </button>
-                        <?php                     foreach(get_the_category() as $category){
+                        <?php                     
+                        foreach(get_the_category() as $category){
                                 printf(
                                     '<a href="%s" class="category-link %s">%s </a>',
                                     esc_url(get_category_link( $category )) ,
@@ -414,8 +415,15 @@ wp_reset_postdata(); // Сбрасываем $post
                     <div class="swiper-container photo-report-slider">
                         <!-- Additional required wrapper -->
                         <div class="swiper-wrapper">
-                            <?php $images = get_attached_media('image');
+                            <?php 
+                            $images = get_attached_media('image');
                                 foreach ($images as $image) {
+                                    ?>
+                                    <div class="swiper-slide">
+                                        <img src="<?php echo $image->guid ?>" alt="">
+                                    </div>
+                                    <?php
+
                                     echo '<div class="swiper-slide"><img src="';
                                     print_r($image -> guid);
                                     echo '"></div>';
@@ -434,7 +442,6 @@ wp_reset_postdata(); // Сбрасываем $post
                                 esc_html($category -> name)
                             );
                         } ?>
-                        <img src="<?php the_post_thumbnail_url() ?>" alt="" class="post-thumb" />
                         <?php $author_id = get_the_author_meta('ID') ?>
                         <a href="<?php echo get_author_posts_url( $author_id ) ?>" class="author">
                             <img src="<?php echo get_avatar_url($author_id)?>" alt="" class="author-avatar" />

@@ -102,6 +102,19 @@
 			?>
 		</div>
 	</div><!-- .entry-content -->
+	<footer class="post-footer">
+		<div class="container">
+			<?php 
+			$tags_list = get_the_tag_list('', esc_html_x( '',"list item separator", 'universal' ));
+			if($tags_list){
+				printf('<span class="tags-links">' . esc_html__( '%1$s', 'universal') . '</span>', $tags_list);
+			}
+			
+			meks_ess_share();
+			?>
+		</div>
+		
+	</footer>
 
 
 	<!-- /.post-header-footer -->

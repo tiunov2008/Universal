@@ -15,10 +15,15 @@
         
         <div class="footer-info">
             <?php 
+                if( has_custom_logo() ){
+                    echo '<div class="logo">' . get_custom_logo() . '</div>';
+                    } else {
+                    } 
                 wp_nav_menu( [
                     'theme_location'  => 'footer_menu',
                     'container'       => 'nav', 
                     'container_id'    => '',
+                    'container_class' => 'footer-nav-wrapper', 
                     'menu_class'      => 'footer-nav', 
                     'echo'            => true,
                 ] );

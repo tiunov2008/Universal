@@ -7,23 +7,15 @@
 </head>
 <body <?php body_class();?> >
     <?php wp_body_open(); ?>
-    <header class="header">
+    <header class="header header-light">
         <div class="container">
             <div class="header-wrapper">
-                <div class="logo">
-                    <a
-                        href="#"
-                        class="custom-logo-link"
-                        rel="home"
-                        aria-current="page"
-                    >
-                        <?php if( has_custom_logo() ){
-                            the_custom_logo();
-                            } else {
-                                echo 'Universal';
-                            } ?>
-                    </a>
-                </div>
+                <?php if( has_custom_logo() ){
+                        echo '<div class="logo">' . get_custom_logo() . 
+                        '<span class="logo-name">' . get_bloginfo('name') . '</span>' . '</div>';
+                        } else {
+                            echo 'Universal';
+                        } ?>
                 <?php 
                     wp_nav_menu( [
                         'theme_location'  => 'header_menu',

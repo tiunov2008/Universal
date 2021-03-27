@@ -116,6 +116,6 @@
 		
 	</footer>
 
-
+	<?php comments_template(); ?>
 	<!-- /.post-header-footer -->
 </article>

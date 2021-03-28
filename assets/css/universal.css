@@ -1597,6 +1597,47 @@ body {
   margin-bottom: 25px;
 }
 
+.footer-form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 70px;
+}
+
+.footer-form-wrapper {
+  max-width: 760px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footer-form-title {
+  font-family: Roboto Slab;
+  font-size: 40px;
+  line-height: 50px;
+  margin-bottom: 25px;
+}
+
+.footer-form input {
+  margin-right: 10px;
+  padding: 10px 15px;
+  border: 1px solid #D9DADB;
+  border-radius: 5px;
+  min-width: 313px;
+}
+
+.footer-form button {
+  background: #4592FF;
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  padding: 10px 25px;
+  border: none;
+  cursor: pointer;
+}
+
 .footer-social .widget-title {
   display: none;
 }

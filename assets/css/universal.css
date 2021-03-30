@@ -1106,6 +1106,10 @@ body {
   padding-bottom: 30px;
 }
 
+.search {
+  background-color: #EDEFF0;
+}
+
 .digest {
   margin-top: 30px;
   list-style: none;
@@ -2192,4 +2196,49 @@ body {
   margin-top: 15px;
   font-size: 14px;
   line-height: 20px;
+}
+
+.pagination .nav-links {
+  margin-top: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination .nav-links * {
+  padding: 17px;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: "Lato Black";
+  color: #262D33;
+  text-align: center;
+}
+
+.pagination .nav-links *:not(:last-child) {
+  border-right: 1px solid #D9DADB;
+}
+
+.pagination .nav-links .prev {
+  padding: 17px 70px;
+  margin-right: auto;
+  flex-grow: 1;
+}
+
+.pagination .nav-links .next {
+  padding: 17px 70px;
+  margin-left: auto;
+  flex-grow: 1;
+}
+
+.pagination-prev-icon {
+  width: 15px;
+  height: 7px;
+  fill: #BCBFC2;
+}
+
+.page-numbers {
+  width: 64px;
 }

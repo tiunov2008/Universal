@@ -2242,3 +2242,95 @@ body {
 .page-numbers {
   width: 64px;
 }
+
+.category {
+  background-color: #EDEFF0;
+}
+
+.category-title {
+  font-family: Roboto Slab;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 50px;
+  color: #262D33;
+}
+
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.post-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 23%;
+  height: 370px;
+  margin-bottom: 30px;
+}
+
+.post-card:not(:last-child) {
+  margin-right: 2%;
+}
+
+.post-card-thumb {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.post-card-text {
+  padding: 15px 25px 25px 25px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card-text p {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 14px;
+}
+
+.post-card-title {
+  font-family: Roboto Slab;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 25px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.post-card .author {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.post-card .author-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.post-card .author-info {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  color: #939699;
+}
+
+.post-card .author-name {
+  width: 100%;
+  color: #4B5157;
+}
+
+.post-card .comments, .post-card .likes {
+  margin-left: 10px;
+  font-size: 12px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+}

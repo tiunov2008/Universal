@@ -2256,6 +2256,10 @@ body {
   color: #262D33;
 }
 
+.category .pagination {
+  margin-bottom: 50px;
+}
+
 .post-list {
   display: flex;
   flex-wrap: wrap;
@@ -2278,6 +2282,14 @@ body {
   height: 180px;
   width: 100%;
   object-fit: cover;
+}
+
+.post-card-link {
+  text-decoration: none;
+}
+
+.post-card-link:visited {
+  color: #4B5157;
 }
 
 .post-card-text {

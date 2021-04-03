@@ -39,7 +39,7 @@ get_header();
                     <?php //the_category() 
                     foreach(get_the_category() as $category){
                             printf(
-                                '<a href="%s" class="category-link %s">%s </a>',
+                                '<a href="%s" class="category-link %s">%s</a>',
                                 esc_url(get_category_link( $category )) ,
                                 esc_html($category -> slug),
                                 esc_html($category -> name)
@@ -84,7 +84,7 @@ get_header();
                     <li class="post">
                         <?php                     foreach(get_the_category() as $category){
                             printf(
-                                '<a href="%s" class="category-link %s">%s</a>',
+                                '<a href="%s" class="category-link %s">%s </a>',
                                 esc_url(get_category_link( $category )) ,
                                 esc_html($category -> slug),
                                 esc_html($category -> name)
